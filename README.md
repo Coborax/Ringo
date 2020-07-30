@@ -1,5 +1,7 @@
 # りんご「RINGO」
- A video player for language learners
+ Ringo is a media player created by Mikkel L. Mouridsen ([@Coborax.](https://github.com/Coborax)), for learning languages.
+ 
+![screenshot](Media/Screenshot.png)
 
 ## Roadmap
 - [x] Support major codecs
