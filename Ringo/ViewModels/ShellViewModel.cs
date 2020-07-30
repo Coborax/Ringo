@@ -110,7 +110,7 @@ namespace Ringo.Windows.ViewModels
 
         public void About()
         {
-            _windowManager.ShowPopup(_aboutVM);
+            _windowManager.ShowDialog(_aboutVM);
         }
 
         public void PlayBTN()

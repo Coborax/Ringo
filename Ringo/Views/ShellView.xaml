@@ -8,7 +8,7 @@
         xmlns:vlc="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
            mc:Ignorable="d"
-        Title="Ringo Windows Alpha" 
+        Title="りんご Windows Alpha" 
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource WindowWin10}"
         ShowTitle="True"
@@ -21,7 +21,7 @@
                     <MenuItem Header="Open video" x:Name="OpenVideo" cal:Message.Attach="[Event Click] = [Action OpenVideo]"/>
                 </MenuItem>
                 <MenuItem Header="Help">
-                    <MenuItem x:Name="About" Header="About"/>
+                    <MenuItem x:Name="About" Header="About" cal:Message.Attach="[Event Click] = [Action About]"/>
                 </MenuItem>
             </Menu>
         </StackPanel>
