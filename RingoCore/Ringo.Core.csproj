@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyName>Ringo.Core</AssemblyName>
+    <RootNamespace>Ringo.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SubtitlesParser" Version="1.4.8" />
+  </ItemGroup>
+
+</Project>
