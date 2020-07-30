@@ -1,4 +1,4 @@
-# Ringo
+# りんご「RINGO」
  A video player for language learners
 
 ## Roadmap
