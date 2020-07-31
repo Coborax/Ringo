@@ -6,9 +6,8 @@
 ## Roadmap
 - [x] Support major codecs
 - [ ] Export to anki via AnkiConnect
-- [ ] Support JMDict dictionary
+- [ ] Support Yomichan dictionaries
 - [ ] Hover over words to see dictionary definition
-- [ ] Use EPWING dictionaries
 - [ ] Scan media collection, and load metadata about show (Like kodi)
 
 ## Contributing
