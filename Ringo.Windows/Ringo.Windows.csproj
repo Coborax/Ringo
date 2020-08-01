@@ -25,7 +25,7 @@
     <PackageReference Include="LibVLCSharp.WPF" Version="3.4.6" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RingoCore\Ringo.Core.csproj" />
+    <ProjectReference Include="..\Ringo.Core\Ringo.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
