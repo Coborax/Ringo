@@ -4,7 +4,7 @@ using Xamarin.Forms.Platform.GTK;
 
 namespace Ringo.Xamarin.GTK
 {
-    class MainClass
+    class Program
     {
         [STAThread]
         public static void Main(string[] args)
@@ -12,10 +12,11 @@ namespace Ringo.Xamarin.GTK
             Gtk.Application.Init();
             Forms.Init();
 
-            var app = new App();
-            var window = new FormsWindow();
+            App app = new App();
+            FormsWindow window = new FormsWindow();
+            
             window.LoadApplication(app);
-            window.SetApplicationTitle("りんご GTK Test");
+            window.SetApplicationTitle("GTK Test");
             window.Show();
 
             Gtk.Application.Run();
