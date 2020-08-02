@@ -16,7 +16,7 @@ namespace Test
             var app = new App();
             var window = new FormsWindow();
             window.LoadApplication(app);
-            window.SetApplicationTitle("りんご GTK Test");
+            window.SetApplicationTitle("GTK Test");
             window.Show();
 
             Gtk.Application.Run();
