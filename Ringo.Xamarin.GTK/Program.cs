@@ -12,8 +12,8 @@ namespace Ringo.Xamarin.GTK
             Gtk.Application.Init();
             Forms.Init();
 
-            App app = new App();
-            FormsWindow window = new FormsWindow();
+            var app = new App();
+            var window = new FormsWindow();
             
             window.LoadApplication(app);
             window.SetApplicationTitle("GTK Test");
