@@ -1,4 +1,5 @@
-﻿using SubtitlesParser.Classes;
+﻿using Ringo.Models;
+using SubtitlesParser.Classes;
 using SubtitlesParser.Classes.Parsers;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,9 @@ namespace Ringo.Helpers
     {
         SubParser _parser;
 
-        public List<SubtitleItem> SubtitleItems { get; set; } = new List<SubtitleItem>();
+        public List<Subtitle> Subtitles { get; set; } = new List<Subtitle>();
+
+        private List<SubtitleItem> _subtitleItems = new List<SubtitleItem>();
 
         public SubtitleHelper()
         {
@@ -20,29 +23,43 @@ namespace Ringo.Helpers
 
         public void LoadSubtitles(string path)
         {
-            SubtitleItems.Clear();
+            _subtitleItems.Clear();
+            Subtitles.Clear();
 
             using (var fileStream = File.OpenRead(path))
             {
-                SubtitleItems = _parser.ParseStream(fileStream);
+                _subtitleItems = _parser.ParseStream(fileStream);
+
+                foreach (SubtitleItem subtitle in _subtitleItems)
+                {
+                    Subtitles.Add(new Subtitle(subtitle));
+                }
             }
+        }
+
+        public SubtitleItem GetSubItemAtTime(int time)
+        {
+            foreach (SubtitleItem item in _subtitleItems)
+            {
+                if (item.StartTime <= time && item.EndTime >= time)
+                    return item;
+            }
+            return null;
         }
 
         public string GetLineAtTime(int time)
         {
-            SubtitleItem item = GetSubAtTime(time);
+            Subtitle item = GetSubAtTime(time);
 
             if (item != null)
-            {
-                return item.Lines[0];
-            }
+                return item.Line;
 
             return "";
         }
 
-        public SubtitleItem GetSubAtTime(int time)
+        public Subtitle GetSubAtTime(int time)
         {
-            foreach (SubtitleItem item in SubtitleItems)
+            foreach (Subtitle item in Subtitles)
             {
                 if (item.StartTime <= time && item.EndTime >= time)
                     return item;
