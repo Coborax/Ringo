@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ringo.Windows.ViewModels
+namespace Ringo.ViewModels
 {
     public class AboutViewModel : Screen
     {

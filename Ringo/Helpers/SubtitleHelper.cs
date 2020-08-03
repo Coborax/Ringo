@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Ringo.Core.Helpers
+namespace Ringo.Helpers
 {
     public class SubtitleHelper
     {
@@ -22,8 +22,10 @@ namespace Ringo.Core.Helpers
         {
             SubtitleItems.Clear();
 
-            using var fileStream = File.OpenRead(path);
-            SubtitleItems = _parser.ParseStream(fileStream);
+            using (var fileStream = File.OpenRead(path))
+            {
+                SubtitleItems = _parser.ParseStream(fileStream);
+            }
         }
 
         public string GetLineAtTime(int time)

@@ -1,6 +1,6 @@
 ﻿using HandyControl.Controls;
 
-namespace Ringo.Windows.Views
+namespace Ringo.Views
 {
     /// <summary>
     /// Interaction logic for AboutView.xaml

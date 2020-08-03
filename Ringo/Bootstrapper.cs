@@ -2,14 +2,15 @@
 using HandyControl.Data;
 using HandyControl.Tools;
 using LibVLCSharp.Shared;
-using Ringo.Core.Helpers;
-using Ringo.Windows.ViewModels;
+using Ringo.Helpers;
+using Ringo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
 using System.Windows;
 
-namespace Ringo.Windows
+namespace Ringo
 {
     public class Bootstrapper : BootstrapperBase
     {
@@ -69,7 +70,7 @@ namespace Ringo.Windows
             _container.BuildUp(instance);
         }
 
-        /*public static SystemVersionInfo GetSystemVersionInfo()
+        public static SystemVersionInfo GetSystemVersionInfo()
         {
             var managementClass = new ManagementClass("Win32_OperatingSystem");
             var instances = managementClass.GetInstances();
@@ -83,7 +84,7 @@ namespace Ringo.Windows
                 }
             }
             return default(SystemVersionInfo);
-        }*/
+        }
 
     }
 }

@@ -2,7 +2,7 @@
 using LibVLCSharp.Shared;
 using LibVLCSharp.WPF;
 using Microsoft.Win32;
-using Ringo.Core.Helpers;
+using Ringo.Helpers;
 using SubtitlesParser.Classes;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 
-namespace Ringo.Windows.ViewModels
+namespace Ringo.ViewModels
 {
     public class ShellViewModel : Caliburn.Micro.Screen
     {
@@ -34,6 +34,7 @@ namespace Ringo.Windows.ViewModels
 
         public ShellViewModel(SubtitleHelper subHelper, IWindowManager windowManager, AboutViewModel aboutVM)
         {
+            LibVLCSharp.Shared.Core.Initialize();
             _libVLC = new LibVLC();
             _mediaPlayer = new MediaPlayer(_libVLC);
             _mediaPlayer.TimeChanged += MediaPlayerTimeChanged;
