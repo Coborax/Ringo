@@ -3,6 +3,7 @@ using LibVLCSharp.Shared;
 using LibVLCSharp.WPF;
 using Microsoft.Win32;
 using Ringo.Helpers;
+using Ringo.Models;
 using SubtitlesParser.Classes;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,8 @@ namespace Ringo.ViewModels
         private IWindowManager _windowManager;
         private AboutViewModel _aboutVM;
 
-        private ObservableCollection<SubtitleItem> _subtitleItems;
-        private SubtitleItem _selectedSub;
+        private ObservableCollection<Subtitle> _subtitleItems;
+        private Subtitle _selectedSub;
 
         private int _seekerMax = 0;
         private int _seekerVal = 0;
@@ -55,7 +56,7 @@ namespace Ringo.ViewModels
         {
             SeekerVal = (int)e.Time;
 
-            SubtitleItem sub = _subHelper.GetSubAtTime(SeekerVal);
+            Subtitle sub = _subHelper.GetSubAtTime(SeekerVal);
             if (sub != null)
             {
                 _internalSubChange = true;
@@ -63,7 +64,7 @@ namespace Ringo.ViewModels
             }
         }
 
-        public ObservableCollection<SubtitleItem> SubtitleItems
+        public ObservableCollection<Subtitle> SubtitleItems
         {
             get { return _subtitleItems; }
             set 
@@ -73,7 +74,7 @@ namespace Ringo.ViewModels
             }
         }
 
-        public SubtitleItem SelectedSub
+        public Subtitle SelectedSub
         {
             get { return _selectedSub; }
             set
@@ -153,7 +154,7 @@ namespace Ringo.ViewModels
                     _subHelper.LoadSubtitles(subPath);
 
                 _mediaPlayer.Play();
-                SubtitleItems = new ObservableCollection<SubtitleItem>(_subHelper.SubtitleItems);
+                SubtitleItems = new ObservableCollection<Subtitle>(_subHelper.Subtitles);
             }
         }
 

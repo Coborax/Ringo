@@ -19,6 +19,7 @@
             <Menu HorizontalAlignment="Left">
                 <MenuItem Header="File">
                     <MenuItem Header="Open video" x:Name="OpenVideo" cal:Message.Attach="[Event Click] = [Action OpenVideo]"/>
+                    <MenuItem Header="Prefrences"/>
                 </MenuItem>
                 <MenuItem Header="Help">
                     <MenuItem x:Name="About" Header="About" cal:Message.Attach="[Event Click] = [Action About]"/>
@@ -48,7 +49,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <TextBlock Text="{Binding Lines[0]}"></TextBlock>
+                            <TextBlock Text="{Binding Line}" FontSize="24"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
