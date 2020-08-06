@@ -51,7 +51,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.RowSpan="2">
+        <Grid Grid.Column="1">
             <ListBox x:Name="SubList" ItemsSource="{Binding SubtitleItems}" SelectedItem="{Binding SelectedSub}" cal:Message.Attach="[Event SelectionChanged] = [Action SubChanged($source)]">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -68,6 +68,13 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="CopyScreenshot" Content="Screenshot" Margin="10" Width="298" Height="37" cal:Message.Attach="[Event Click] = [Action CopyScreenshot()]"></Button>
         </Grid>
     </Grid>
 </hc:Window>

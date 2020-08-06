@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Ringo.Views"
         mc:Ignorable="d"
         Style="{StaticResource WindowWin10}"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         Title="About" Height="450" Width="800">
     <Grid>

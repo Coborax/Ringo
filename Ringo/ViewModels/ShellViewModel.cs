@@ -9,11 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Ringo.ViewModels
 {
@@ -35,6 +37,8 @@ namespace Ringo.ViewModels
         //private bool _seeking = false;
         private bool _internalSubChange = false;
 
+        private string localFiles = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ringo");
+
         public ShellViewModel(SubtitleHelper subHelper, IWindowManager windowManager, AboutViewModel aboutVM)
         {
             LibVLCSharp.Shared.Core.Initialize();
@@ -47,6 +51,9 @@ namespace Ringo.ViewModels
             _aboutVM = aboutVM;
 
             _subHelper = subHelper;
+
+            if (!Directory.Exists(localFiles))
+                Directory.CreateDirectory(localFiles);
         }
 
         private void MediaPlayerLengthChanged(object sender, MediaPlayerLengthChangedEventArgs e)
@@ -85,7 +92,12 @@ namespace Ringo.ViewModels
                 NotifyOfPropertyChange(() => SelectedSub);
 
                 if (!_internalSubChange)
-                    ThreadPool.QueueUserWorkItem(_ => _mediaPlayer.Time = _selectedSub.StartTime);
+                    ThreadPool.QueueUserWorkItem(_ => {
+                        _mediaPlayer.Time = _selectedSub.StartTime;
+
+                        if (!_mediaPlayer.IsPlaying)
+                            _mediaPlayer.Play();
+                    });
 
                 _internalSubChange = false;
 
@@ -163,6 +175,16 @@ namespace Ringo.ViewModels
         public void CopySub(Subtitle sub)
         {
             Clipboard.SetText(sub.Line);
+        }
+
+        public void CopyScreenshot()
+        {
+            if (_mediaPlayer.IsPlaying)
+                _mediaPlayer.Pause();
+
+            _mediaPlayer.TakeSnapshot(0, Path.Combine(localFiles, "temp.png"), 0, 0);
+            BitmapSource img = new BitmapImage(new Uri(Path.Combine(localFiles, "temp.png")));
+            Clipboard.SetImage(img);
         }
 
         public void SubChanged(ListBox list)
