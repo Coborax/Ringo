@@ -12,6 +12,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Ringo.ViewModels
 {
@@ -156,6 +158,16 @@ namespace Ringo.ViewModels
                 _mediaPlayer.Play();
                 SubtitleItems = new ObservableCollection<Subtitle>(_subHelper.Subtitles);
             }
+        }
+
+        public void CopySub(Subtitle sub)
+        {
+            Clipboard.SetText(sub.Line);
+        }
+
+        public void SubChanged(ListBox list)
+        {
+            list.ScrollIntoView(list.SelectedIndex);
         }
 
         protected override void OnDeactivate(bool close)

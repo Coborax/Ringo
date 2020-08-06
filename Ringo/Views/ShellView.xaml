@@ -39,17 +39,31 @@
         <vlc:VideoView x:Name="VideoView" Grid.Row="0" Grid.Column="0" cal:Message.Attach="[Event Loaded] = [Action VideoViewLoaded($source)]">
         </vlc:VideoView>
         <Grid Grid.Row="1">
-            <Button x:Name="PlayBTN" Content="Play" HorizontalAlignment="Left" Margin="10,10,0,10" Width="143" VerticalAlignment="Stretch"/>
-            <Button x:Name="PauseBTN" Content="Pause" HorizontalAlignment="Left" Margin="158,14,0,15" Width="143" VerticalAlignment="Stretch"/>
-            <Slider x:Name="Seeker" Minimum="0" Maximum="{Binding SeekerMax}" Value="{Binding SeekerVal}" Margin="314,0,10,0" VerticalAlignment="Center" RenderTransformOrigin="0.35,-0.222" LargeChange="0.001"/>
+            <Grid Height="57" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="13*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="PlayBTN" Grid.Column="0" Content="Play" HorizontalAlignment="Stretch" Margin="10,10,0,10" VerticalAlignment="Stretch" Height="Auto"/>
+                <Button x:Name="PauseBTN" Grid.Column="1" Content="Pause" HorizontalAlignment="Stretch" Margin="5,10" VerticalAlignment="Stretch" Height="Auto"/>
+                <Slider x:Name="Seeker" Grid.Column="2" Minimum="0" Maximum="{Binding SeekerMax}" Value="{Binding SeekerVal}" Margin="10,0,10,18" RenderTransformOrigin="0.35,-0.222" LargeChange="0.001" Height="18" VerticalAlignment="Bottom"/>
+            </Grid>
         </Grid>
 
         <Grid Grid.Column="1" Grid.RowSpan="2">
-            <ListBox x:Name="SubList" ItemsSource="{Binding SubtitleItems}" SelectedItem="{Binding SelectedSub}">
+            <ListBox x:Name="SubList" ItemsSource="{Binding SubtitleItems}" SelectedItem="{Binding SelectedSub}" cal:Message.Attach="[Event SelectionChanged] = [Action SubChanged($source)]">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <TextBlock Text="{Binding Line}" FontSize="24"></TextBlock>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1" Margin="2,2,2,2">
+                                <TextBlock Text="{Binding Line}" Grid.Column="1" FontSize="24" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Button Content="Copy" Grid.Column="0" cal:Message.Attach="[Event Click] = [Action CopySub($dataContext)]"></Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
