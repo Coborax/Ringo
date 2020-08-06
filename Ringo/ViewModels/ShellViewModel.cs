@@ -167,7 +167,7 @@ namespace Ringo.ViewModels
 
         public void SubChanged(ListBox list)
         {
-            list.ScrollIntoView(list.SelectedIndex);
+            list.ScrollIntoView(list.SelectedItem);
         }
 
         protected override void OnDeactivate(bool close)
